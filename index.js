@@ -8,9 +8,20 @@ const url = require('url');
 
 
 let winOne, winTwo;
+
 function createWindow() {
-    winOne = new BrowserWindow();
-    winTwo = new BrowserWindow();
+    winOne = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
+        }
+    });
+    winTwo = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
+        }
+    });
 
     winOne.loadURL(url.format({
         pathname: path.join(__dirname, 'one.html'),
@@ -26,22 +37,22 @@ function createWindow() {
     winOne.webContents.openDevTools();
     winTwo.webContents.openDevTools();
     winOne.on('closed', () => {
-        win = null;
+        winOne = null;
     })
     winTwo.on('closed', () => {
-        win = null;
+        winTwo = null;
     })
 }
 app.on('ready', createWindow);
 
-app.on('window-all-closed', ()=> {
-    if(process.platform !== 'darwin'){
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
         app.quit()
-    }    
+    }
 });
 
 app.on('activate', () => {
-    if(winOne === null){
+    if (winOne === null) {
         createWindow()
     }
 })
