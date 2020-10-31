@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FirstCRUD Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>First CRUD Application </h1>
+
+        <form action="" class="form_group" id="taskForm">
+            <label for="name">Enter Your Name</label>
+            <input type="text" id="taskName" name="name">
+            
+            <label for="job">Enter Your Job Title</label>
+            <input type="text" id="taskJob" name="job">
+
+            <label for="address">Enter Address</label>
+            <textarea name="address" id="taskAddress" rows="5"></textarea>
+            <button type="submit">Save</button>
+            
+        </form>
+        <hr color="red"> 
+        <!-- Task List  -->
+        <ul id="taskList"> </ul>
+
+    <script src="index.js"></script>
+</body>
+</html>

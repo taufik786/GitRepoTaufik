@@ -1,14 +1,16 @@
 {
-  "name": "hello_world",
+  "name": "First_CRUD_App",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "electron ."
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "electron": "^10.1.5"
+  "dependencies": {
+    "electron": "^10.1.5",
+    "mongoose": "^5.10.11"
   }
 }

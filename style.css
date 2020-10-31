@@ -1,3 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 h1{
-    color: orange;
+    color: red;
+    text-align: center;
+}
+.form_group{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 50px;
+    
+}
+.form_group>label,input,textarea{
+    margin-top: 4px;
+    padding: 4px 5px;
+    font-size: 18px;
+}
+.form_group>label{
+    padding: 4px 0;
+}
+button{
+    width: 80px;
+    padding: 8px;
+    margin: 5px 0;
 }
