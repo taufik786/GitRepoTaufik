@@ -1,20 +1,26 @@
-const { BrowserWindow, ipcMain } = require("electron");
-const { app } = require('electron')
-
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
 require('./database');
-
 const Task = require("./models/Task");
 
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 600,
-    height: 700,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
 
-  win.loadFile("index.html");
+let win;
+function createWindow() {
+    win = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            
+        }
+    });
+
+    win.loadFile('index.html');
+
+    // winOne.webContents.openDevTools();
+    win.on('closed', () => {
+        win = null;
+    })
 }
 
 ipcMain.on("new-task", async (e, arg) => {
@@ -44,8 +50,15 @@ ipcMain.on("update-task", async (e, args) => {
   e.reply("update-task-success", JSON.stringify(updatedTask));
 });
 
-module.exports = { createWindow };
+app.on('ready', createWindow);
+
+app.on('window-all-closed', ()=> {
+    if(process.platform !== 'darwin'){
+        app.quit()
+    }    
+});
 
 
-app.whenReady().then(createWindow);
-app.allowRendererProcessReuse = false 
+
+// app.whenReady().then(createWindow);
+// app.allowRendererProcessReuse = false 
